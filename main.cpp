@@ -60,10 +60,38 @@ protected:
         
         // Definir las conexiones usando la lista de adyacencia
         adjacencyList[0] = {1, 3, 4}; // Nodos conectados al nodo 0
-        adjacencyList[1] = {0}; // Nodos conectados al nodo 1
-        adjacencyList[2] = {1}; // Nodos conectados al nodo 2
-        adjacencyList[3] = {0}; // Nodos conectados al nodo 3
-        adjacencyList[4] = {0}; // Nodos conectados al nodo 4
+        adjacencyList[1] = {0, 2, 4}; // Nodos conectados al nodo 1
+        adjacencyList[2] = {0, 2, 4}; // Nodos conectados al nodo 2
+        adjacencyList[3] = {0, 2, 4}; // Nodos conectados al nodo 3
+        adjacencyList[4] = {0, 2, 4}; // Nodos conectados al nodo 4
+        adjacencyList[5] = {0, 2, 4}; // Nodos conectados al nodo 5
+        adjacencyList[6] = {0, 2, 4}; // Nodos conectados al nodo 6
+        adjacencyList[7] = {0, 2, 4}; // Nodos conectados al nodo 7
+        adjacencyList[8] = {0, 2, 4}; // Nodos conectados al nodo 8
+        adjacencyList[9] = {0, 2, 4}; // Nodos conectados al nodo 9
+        adjacencyList[10] = {0, 2, 4}; // Nodos conectados al nodo 10
+        adjacencyList[11] = {0, 2, 4}; // Nodos conectados al nodo 11
+        adjacencyList[12] = {0, 2, 4}; // Nodos conectados al nodo 12
+        adjacencyList[13] = {0, 2, 4}; // Nodos conectados al nodo 13
+        adjacencyList[14] = {0, 2, 4}; // Nodos conectados al nodo 14
+        adjacencyList[15] = {0, 2, 4}; // Nodos conectados al nodo 15
+        adjacencyList[16] = {0, 2, 4}; // Nodos conectados al nodo 16
+        adjacencyList[17] = {0, 2, 4}; // Nodos conectados al nodo 17
+        adjacencyList[18] = {0, 2, 4}; // Nodos conectados al nodo 18
+        adjacencyList[19] = {0, 2, 4}; // Nodos conectados al nodo 19
+        adjacencyList[20] = {0, 2, 4}; // Nodos conectados al nodo 20
+        adjacencyList[21] = {0, 2, 4}; // Nodos conectados al nodo 21
+        adjacencyList[22] = {0, 2, 4}; // Nodos conectados al nodo 22
+        adjacencyList[23] = {0, 2, 4}; // Nodos conectados al nodo 23
+        adjacencyList[24] = {0, 2, 4}; // Nodos conectados al nodo 24
+        adjacencyList[25] = {0, 2, 4}; // Nodos conectados al nodo 25
+        adjacencyList[26] = {0, 2, 4}; // Nodos conectados al nodo 26
+        adjacencyList[27] = {0, 2, 4}; // Nodos conectados al nodo 27
+        adjacencyList[28] = {0, 2, 4}; // Nodos conectados al nodo 28
+        adjacencyList[29] = {0, 2, 4}; // Nodos conectados al nodo 29
+        adjacencyList[30] = {0, 2, 4}; // Nodos conectados al nodo 30
+        adjacencyList[31] = {0, 2, 4}; // Nodos conectados al nodo 31
+        adjacencyList[32] = {0, 2, 4}; // Nodos conectados al nodo 32
         // Agrega más conexiones según sea necesario para otros nodos...
 
         // Inicializar los vecinos de cada nodo basado en la lista de adyacencia
