@@ -56,14 +56,14 @@ protected:
         // Definir las conexiones usando una matriz de adyacencia
         int adjacencyMatrix[33][33] = {
         {0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //0
-        {1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //1
-        {0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //2
-        {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //3
-        {1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //4
-        {0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //5
-        {0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //6
-        {0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //7
-        {0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //8
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //1
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //2
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //3
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //4
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //5
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //6
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //7
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //8
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //9
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //10
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //11
@@ -103,46 +103,46 @@ protected:
     void setNodePositions(int width, int height) {
         // Calcular posiciones de los nodos de manera responsiva
         // Puedes ajustar estos valores para crear la disposición que prefieras
-        nodos[0]->posicion = QPoint(width / 3, height / 8); // 0
-        nodos[1]->posicion = QPoint(width / 2, height / 8); // 1
-        nodos[2]->posicion = QPoint(width * 2/3, height / 8); // 2
+        nodos[0]->posicion = QPoint(width * 3 / 8, height / 8); // 0
+        nodos[1]->posicion = QPoint(width * 4 / 8, height / 8); // 1
+        nodos[2]->posicion = QPoint(width * 5 / 8, height / 8); // 2
 
-        nodos[3]->posicion = QPoint(width / 3, height * 2 / 8); // 3
-        nodos[4]->posicion = QPoint(width / 2, height * 2 / 8); // 4
-        nodos[5]->posicion = QPoint(width * 2/3, height * 2 / 8); // 5
+        nodos[3]->posicion = QPoint(width * 3 / 8, height * 2 / 8); // 3
+        nodos[4]->posicion = QPoint(width * 4 / 8, height * 2 / 8); // 4
+        nodos[5]->posicion = QPoint(width * 5 / 8, height * 2 / 8); // 5
 
-        nodos[6]->posicion = QPoint(width / 3, 3 * height / 8); // 6
-        nodos[7]->posicion = QPoint(width / 2, 3 * height / 8); // 7
-        nodos[8]->posicion = QPoint(width * 2/3, 3 * height / 8); // 8
+        nodos[6]->posicion = QPoint(width * 3 / 8, height * 3 / 8); // 6
+        nodos[7]->posicion = QPoint(width * 4 / 8, height * 3 / 8); // 7
+        nodos[8]->posicion = QPoint(width * 5 / 8, height * 3 / 8); // 8
 
-        nodos[9]->posicion = QPoint(width * 0.15, 3 * height / 8); // 9
-        nodos[10]->posicion = QPoint(width * 0.25, 3 * height / 8); // 10
-        nodos[11]->posicion = QPoint(width * 0.75, 3 * height / 8); // 11
-        nodos[12]->posicion = QPoint(width * 0.85, 3 * height / 8); // 12
+        nodos[9]->posicion = QPoint(width * 1 / 8, height * 3 / 8); // 9
+        nodos[10]->posicion = QPoint(width * 2 / 8, height * 3 / 8); // 10
+        nodos[11]->posicion = QPoint(width * 6 / 8, height * 3 / 8); // 11
+        nodos[12]->posicion = QPoint(width * 7 / 8, height * 3 / 8); // 12
 
-        nodos[13]->posicion = QPoint(width * 0.15, 2 * height / 4); // 13
-        nodos[14]->posicion = QPoint(width * 0.25, 2 * height / 4); // 14
-        nodos[15]->posicion = QPoint(width / 3, 2 * height / 4); // 15
-        nodos[16]->posicion = QPoint(width / 2, 2 * height / 4); // 16
-        nodos[17]->posicion = QPoint(width * 2/3, 2 * height / 4); // 17
-        nodos[18]->posicion = QPoint(width * 0.75, 2 * height / 4); // 18
-        nodos[19]->posicion = QPoint(width * 0.85, 2 * height / 4); // 19
+        nodos[13]->posicion = QPoint(width * 1 / 8, 2 * height / 4); // 13
+        nodos[14]->posicion = QPoint(width * 2 / 8, 2 * height / 4); // 14
+        nodos[15]->posicion = QPoint(width * 3 / 8, 2 * height / 4); // 15
+        nodos[16]->posicion = QPoint(width * 4 / 8, 2 * height / 4); // 16
+        nodos[17]->posicion = QPoint(width * 5 / 8, 2 * height / 4); // 17
+        nodos[18]->posicion = QPoint(width * 6 / 8, 2 * height / 4); // 18
+        nodos[19]->posicion = QPoint(width * 7 / 8, 2 * height / 4); // 19
 
-        nodos[20]->posicion = QPoint(width * 0.15, height * 5 / 8); // 20
-        nodos[21]->posicion = QPoint(width * 0.25, height * 5 / 8); // 21
-        nodos[22]->posicion = QPoint(width / 3, height * 5 / 8); // 22
-        nodos[23]->posicion = QPoint(width / 2, height * 5 / 8); // 23
-        nodos[24]->posicion = QPoint(width * 2/3, height * 5 / 8); // 24
-        nodos[25]->posicion = QPoint(width * 0.75, height * 5 / 8); // 25
-        nodos[26]->posicion = QPoint(width * 0.85, height * 5 / 8); // 26
+        nodos[20]->posicion = QPoint(width * 1 / 8, height * 5 / 8); // 20
+        nodos[21]->posicion = QPoint(width * 2 / 8, height * 5 / 8); // 21
+        nodos[22]->posicion = QPoint(width * 3 / 8, height * 5 / 8); // 22
+        nodos[23]->posicion = QPoint(width * 4 / 8, height * 5 / 8); // 23
+        nodos[24]->posicion = QPoint(width * 5 / 8, height * 5 / 8); // 24
+        nodos[25]->posicion = QPoint(width * 6 / 8, height * 5 / 8); // 25
+        nodos[26]->posicion = QPoint(width * 7 / 8, height * 5 / 8); // 26
 
-        nodos[27]->posicion = QPoint(width / 3, height * 6 / 8); // 27
-        nodos[28]->posicion = QPoint(width / 2, height * 6 / 8); // 28
-        nodos[29]->posicion = QPoint(width * 2/3, height * 6 / 8); // 29
+        nodos[27]->posicion = QPoint(width * 3 / 8, height * 6 / 8); // 27
+        nodos[28]->posicion = QPoint(width * 4 / 8, height * 6 / 8); // 28
+        nodos[29]->posicion = QPoint(width * 5 / 8, height * 6 / 8); // 29
 
-        nodos[30]->posicion = QPoint(width / 3, height * 7 / 8); // 30
-        nodos[31]->posicion = QPoint(width / 2, height * 7 / 8); // 31
-        nodos[32]->posicion = QPoint(width * 2/3, height * 7 / 8); // 32
+        nodos[30]->posicion = QPoint(width * 3 / 8, height * 7 / 8); // 30
+        nodos[31]->posicion = QPoint(width * 4 / 8, height * 7 / 8); // 31
+        nodos[32]->posicion = QPoint(width * 5 / 8, height * 7 / 8); // 32
     }
 
 public:
