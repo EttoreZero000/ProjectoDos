@@ -59,40 +59,39 @@ protected:
         adjacencyList.resize(nodeCount);
         
         // Definir las conexiones usando la lista de adyacencia
-        adjacencyList[0] = {1, 3, 4}; // Nodos conectados al nodo 0
-        adjacencyList[1] = {0, 2, 4}; // Nodos conectados al nodo 1
-        adjacencyList[2] = {1, 4, 5}; // Nodos conectados al nodo 2
-        adjacencyList[3] = {0, 4, 6}; // Nodos conectados al nodo 3
-        adjacencyList[4] = {0, 1, 2, 3, 5, 6, 7 ,8}; // Nodos conectados al nodo 4
-        adjacencyList[5] = {2, 4, 8}; // Nodos conectados al nodo 5
-        adjacencyList[6] = {3 ,4 ,7, 10, 14, 15, 16}; // Nodos conectados al nodo 6
-        adjacencyList[7] = {4, 6, 8, 16}; // Nodos conectados al nodo 7
-        adjacencyList[8] = {4, 5, 7, 11, 16, 17, 18}; // Nodos conectados al nodo 8
-        adjacencyList[9] = {10, 13, 14}; // Nodos conectados al nodo 9
-        adjacencyList[10] = {6, 9 , 14}; // Nodos conectados al nodo 10
-        adjacencyList[11] = {8, 12, 18}; // Nodos conectados al nodo 11
-        adjacencyList[12] = {11, 18, 19}; // Nodos conectados al nodo 12
-        adjacencyList[13] = {9,14, 20}; // Nodos conectados al nodo 13
-        adjacencyList[14] = {6, 9, 10, 13, 15, 20, 21, 22}; // Nodos conectados al nodo 14
-        adjacencyList[15] = {6, 14, 16, 22}; // Nodos conectados al nodo 15
-        adjacencyList[16] = {6, 7, 8, 15, 17, 22, 23, 24}; // Nodos conectados al nodo 16
-        adjacencyList[17] = {8, 16, 18, 24}; // Nodos conectados al nodo 17
-        adjacencyList[18] = {8, 11, 12, 17, 19, 24, 25, 26}; // Nodos conectados al nodo 18
-        adjacencyList[19] = {12, 18, 26}; // Nodos conectados al nodo 19
-        adjacencyList[20] = {13, 14, 21}; // Nodos conectados al nodo 20
-        adjacencyList[21] = {14, 20, 22}; // Nodos conectados al nodo 21
-        adjacencyList[22] = {14, 15, 16, 21, 23, 27, 28}; // Nodos conectados al nodo 22
-        adjacencyList[23] = {16, 22, 24, 28}; // Nodos conectados al nodo 23
-        adjacencyList[24] = {16, 17, 18, 23, 25, 28, 29}; // Nodos conectados al nodo 24
-        adjacencyList[25] = {18, 24, 26}; // Nodos conectados al nodo 25
-        adjacencyList[26] = {18, 19, 25}; // Nodos conectados al nodo 26
-        adjacencyList[27] = {22, 28, 30}; // Nodos conectados al nodo 27
-        adjacencyList[28] = {22, 23, 24, 27, 29, 30, 31, 32}; // Nodos conectados al nodo 28
-        adjacencyList[29] = {24, 28, 32}; // Nodos conectados al nodo 29
-        adjacencyList[30] = {27, 28, 31}; // Nodos conectados al nodo 30
-        adjacencyList[31] = {28, 30, 32}; // Nodos conectados al nodo 31
-        adjacencyList[32] = {28, 29, 31}; // Nodos conectados al nodo 32
-        // Agrega más conexiones según sea necesario para otros nodos...
+        adjacencyList[0] = {1, 3, 4};
+        adjacencyList[1] = {0, 2, 4};
+        adjacencyList[2] = {1, 4, 5};
+        adjacencyList[3] = {0, 4, 6};
+        adjacencyList[4] = {0, 1, 2, 3, 5, 6, 7 ,8};
+        adjacencyList[5] = {2, 4, 8};
+        adjacencyList[6] = {3 ,4 ,7, 10, 14, 15, 16};
+        adjacencyList[7] = {4, 6, 8, 16};
+        adjacencyList[8] = {4, 5, 7, 11, 16, 17, 18};
+        adjacencyList[9] = {10, 13, 14};
+        adjacencyList[10] = {6, 9 , 14}; 
+        adjacencyList[11] = {8, 12, 18}; 
+        adjacencyList[12] = {11, 18, 19};
+        adjacencyList[13] = {9,14, 20};
+        adjacencyList[14] = {6, 9, 10, 13, 15, 20, 21, 22}; 
+        adjacencyList[15] = {6, 14, 16, 22};
+        adjacencyList[16] = {6, 7, 8, 15, 17, 22, 23, 24};
+        adjacencyList[17] = {8, 16, 18, 24};
+        adjacencyList[18] = {8, 11, 12, 17, 19, 24, 25, 26};
+        adjacencyList[19] = {12, 18, 26};
+        adjacencyList[20] = {13, 14, 21};
+        adjacencyList[21] = {14, 20, 22};
+        adjacencyList[22] = {14, 15, 16, 21, 23, 27, 28};
+        adjacencyList[23] = {16, 22, 24, 28};
+        adjacencyList[24] = {16, 17, 18, 23, 25, 28, 29};
+        adjacencyList[25] = {18, 24, 26};
+        adjacencyList[26] = {18, 19, 25};
+        adjacencyList[27] = {22, 28, 30};
+        adjacencyList[28] = {22, 23, 24, 27, 29, 30, 31, 32};
+        adjacencyList[29] = {24, 28, 32}; 
+        adjacencyList[30] = {27, 28, 31}; 
+        adjacencyList[31] = {28, 30, 32}; 
+        adjacencyList[32] = {28, 29, 31};
 
         // Inicializar los vecinos de cada nodo basado en la lista de adyacencia
         for (int i = 0; i < nodeCount; i++) {
