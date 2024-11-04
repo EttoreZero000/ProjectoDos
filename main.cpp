@@ -61,37 +61,37 @@ protected:
         // Definir las conexiones usando la lista de adyacencia
         adjacencyList[0] = {1, 3, 4}; // Nodos conectados al nodo 0
         adjacencyList[1] = {0, 2, 4}; // Nodos conectados al nodo 1
-        adjacencyList[2] = {0, 2, 4}; // Nodos conectados al nodo 2
-        adjacencyList[3] = {0, 2, 4}; // Nodos conectados al nodo 3
-        adjacencyList[4] = {0, 2, 4}; // Nodos conectados al nodo 4
-        adjacencyList[5] = {0, 2, 4}; // Nodos conectados al nodo 5
-        adjacencyList[6] = {0, 2, 4}; // Nodos conectados al nodo 6
-        adjacencyList[7] = {0, 2, 4}; // Nodos conectados al nodo 7
-        adjacencyList[8] = {0, 2, 4}; // Nodos conectados al nodo 8
-        adjacencyList[9] = {0, 2, 4}; // Nodos conectados al nodo 9
-        adjacencyList[10] = {0, 2, 4}; // Nodos conectados al nodo 10
-        adjacencyList[11] = {0, 2, 4}; // Nodos conectados al nodo 11
-        adjacencyList[12] = {0, 2, 4}; // Nodos conectados al nodo 12
-        adjacencyList[13] = {0, 2, 4}; // Nodos conectados al nodo 13
-        adjacencyList[14] = {0, 2, 4}; // Nodos conectados al nodo 14
-        adjacencyList[15] = {0, 2, 4}; // Nodos conectados al nodo 15
-        adjacencyList[16] = {0, 2, 4}; // Nodos conectados al nodo 16
-        adjacencyList[17] = {0, 2, 4}; // Nodos conectados al nodo 17
-        adjacencyList[18] = {0, 2, 4}; // Nodos conectados al nodo 18
-        adjacencyList[19] = {0, 2, 4}; // Nodos conectados al nodo 19
-        adjacencyList[20] = {0, 2, 4}; // Nodos conectados al nodo 20
-        adjacencyList[21] = {0, 2, 4}; // Nodos conectados al nodo 21
-        adjacencyList[22] = {0, 2, 4}; // Nodos conectados al nodo 22
-        adjacencyList[23] = {0, 2, 4}; // Nodos conectados al nodo 23
-        adjacencyList[24] = {0, 2, 4}; // Nodos conectados al nodo 24
-        adjacencyList[25] = {0, 2, 4}; // Nodos conectados al nodo 25
-        adjacencyList[26] = {0, 2, 4}; // Nodos conectados al nodo 26
-        adjacencyList[27] = {0, 2, 4}; // Nodos conectados al nodo 27
-        adjacencyList[28] = {0, 2, 4}; // Nodos conectados al nodo 28
-        adjacencyList[29] = {0, 2, 4}; // Nodos conectados al nodo 29
-        adjacencyList[30] = {0, 2, 4}; // Nodos conectados al nodo 30
-        adjacencyList[31] = {0, 2, 4}; // Nodos conectados al nodo 31
-        adjacencyList[32] = {0, 2, 4}; // Nodos conectados al nodo 32
+        adjacencyList[2] = {1, 4, 5}; // Nodos conectados al nodo 2
+        adjacencyList[3] = {0, 4, 6}; // Nodos conectados al nodo 3
+        adjacencyList[4] = {0, 1, 2, 3, 5, 6, 7 ,8}; // Nodos conectados al nodo 4
+        adjacencyList[5] = {2, 4, 8}; // Nodos conectados al nodo 5
+        adjacencyList[6] = {3 ,4 ,7, 10, 14, 15, 16}; // Nodos conectados al nodo 6
+        adjacencyList[7] = {4, 6, 8, 16}; // Nodos conectados al nodo 7
+        adjacencyList[8] = {4, 5, 7, 11, 16, 17, 18}; // Nodos conectados al nodo 8
+        adjacencyList[9] = {10, 13, 14}; // Nodos conectados al nodo 9
+        adjacencyList[10] = {6, 9 , 14}; // Nodos conectados al nodo 10
+        adjacencyList[11] = {8, 12, 18}; // Nodos conectados al nodo 11
+        adjacencyList[12] = {11, 18, 19}; // Nodos conectados al nodo 12
+        adjacencyList[13] = {9,14, 20}; // Nodos conectados al nodo 13
+        adjacencyList[14] = {6, 9, 10, 13, 15, 20, 21, 22}; // Nodos conectados al nodo 14
+        adjacencyList[15] = {6, 14, 16, 22}; // Nodos conectados al nodo 15
+        adjacencyList[16] = {6, 7, 8, 15, 17, 22, 23, 24}; // Nodos conectados al nodo 16
+        adjacencyList[17] = {8, 16, 18, 24}; // Nodos conectados al nodo 17
+        adjacencyList[18] = {8, 11, 12, 17, 19, 24, 25, 26}; // Nodos conectados al nodo 18
+        adjacencyList[19] = {12, 18, 26}; // Nodos conectados al nodo 19
+        adjacencyList[20] = {13, 14, 21}; // Nodos conectados al nodo 20
+        adjacencyList[21] = {14, 20, 22}; // Nodos conectados al nodo 21
+        adjacencyList[22] = {14, 15, 16, 21, 23, 27, 28}; // Nodos conectados al nodo 22
+        adjacencyList[23] = {16, 22, 24, 28}; // Nodos conectados al nodo 23
+        adjacencyList[24] = {16, 17, 18, 23, 25, 28, 29}; // Nodos conectados al nodo 24
+        adjacencyList[25] = {18, 24, 26}; // Nodos conectados al nodo 25
+        adjacencyList[26] = {18, 19, 25}; // Nodos conectados al nodo 26
+        adjacencyList[27] = {22, 28, 30}; // Nodos conectados al nodo 27
+        adjacencyList[28] = {22, 23, 24, 27, 29, 30, 31, 32}; // Nodos conectados al nodo 28
+        adjacencyList[29] = {24, 28, 32}; // Nodos conectados al nodo 29
+        adjacencyList[30] = {27, 28, 31}; // Nodos conectados al nodo 30
+        adjacencyList[31] = {28, 30, 32}; // Nodos conectados al nodo 31
+        adjacencyList[32] = {28, 29, 31}; // Nodos conectados al nodo 32
         // Agrega más conexiones según sea necesario para otros nodos...
 
         // Inicializar los vecinos de cada nodo basado en la lista de adyacencia
@@ -107,9 +107,43 @@ protected:
         nodos[0]->posicion = QPoint(width * 3 / 8, height / 8); // 0
         nodos[1]->posicion = QPoint(width * 4 / 8, height / 8); // 1
         nodos[2]->posicion = QPoint(width * 5 / 8, height / 8); // 2
+
         nodos[3]->posicion = QPoint(width * 3 / 8, height * 2 / 8); // 3
         nodos[4]->posicion = QPoint(width * 4 / 8, height * 2 / 8); // 4
-        // Continúa asignando posiciones a los demás nodos...
+        nodos[5]->posicion = QPoint(width * 5 / 8, height * 2 / 8); // 5
+
+        nodos[6]->posicion = QPoint(width * 3 / 8, height * 3 / 8); // 6
+        nodos[7]->posicion = QPoint(width * 4 / 8, height * 3 / 8); // 7
+        nodos[8]->posicion = QPoint(width * 5 / 8, height * 3 / 8); // 8
+
+        nodos[9]->posicion = QPoint(width * 1 / 8, height * 3 / 8); // 9
+        nodos[10]->posicion = QPoint(width * 2 / 8, height * 3 / 8); // 10
+        nodos[11]->posicion = QPoint(width * 6 / 8, height * 3 / 8); // 11
+        nodos[12]->posicion = QPoint(width * 7 / 8, height * 3 / 8); // 12
+
+        nodos[13]->posicion = QPoint(width * 1 / 8, 2 * height / 4); // 13
+        nodos[14]->posicion = QPoint(width * 2 / 8, 2 * height / 4); // 14
+        nodos[15]->posicion = QPoint(width * 3 / 8, 2 * height / 4); // 15
+        nodos[16]->posicion = QPoint(width * 4 / 8, 2 * height / 4); // 16
+        nodos[17]->posicion = QPoint(width * 5 / 8, 2 * height / 4); // 17
+        nodos[18]->posicion = QPoint(width * 6 / 8, 2 * height / 4); // 18
+        nodos[19]->posicion = QPoint(width * 7 / 8, 2 * height / 4); // 19
+
+        nodos[20]->posicion = QPoint(width * 1 / 8, height * 5 / 8); // 20
+        nodos[21]->posicion = QPoint(width * 2 / 8, height * 5 / 8); // 21
+        nodos[22]->posicion = QPoint(width * 3 / 8, height * 5 / 8); // 22
+        nodos[23]->posicion = QPoint(width * 4 / 8, height * 5 / 8); // 23
+        nodos[24]->posicion = QPoint(width * 5 / 8, height * 5 / 8); // 24
+        nodos[25]->posicion = QPoint(width * 6 / 8, height * 5 / 8); // 25
+        nodos[26]->posicion = QPoint(width * 7 / 8, height * 5 / 8); // 26
+
+        nodos[27]->posicion = QPoint(width * 3 / 8, height * 6 / 8); // 27
+        nodos[28]->posicion = QPoint(width * 4 / 8, height * 6 / 8); // 28
+        nodos[29]->posicion = QPoint(width * 5 / 8, height * 6 / 8); // 29
+
+        nodos[30]->posicion = QPoint(width * 3 / 8, height * 7 / 8); // 30
+        nodos[31]->posicion = QPoint(width * 4 / 8, height * 7 / 8); // 31
+        nodos[32]->posicion = QPoint(width * 5 / 8, height * 7 / 8); // 32
     }
 
 public:
