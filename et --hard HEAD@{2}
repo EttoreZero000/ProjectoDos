@@ -1,0 +1,39 @@
+[33mb599120[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: checkout: moving from 75158a9bbd6b03309646f109691dcf30b0eed76c to main
+[33m75158a9[m HEAD@{1}: commit: test
+[33mb599120[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{2}: checkout: moving from 942ae868857d876b95360a7a3aead73beee74b01 to b599120b7d072e76fa5d1311013df31532177c3b
+[33m942ae86[m HEAD@{3}: checkout: moving from 8416861d9a9b073c291cbfd9afbe69dc9a0f2db5 to 942ae868857d876b95360a7a3aead73beee74b01
+[33m8416861[m HEAD@{4}: checkout: moving from 34109169c64ce268bf1edf130de50003cf175017 to 8416861d9a9b073c291cbfd9afbe69dc9a0f2db5
+[33m3410916[m HEAD@{5}: checkout: moving from 0fd20c6bb8e5bd62db88f58ae2b22270eaf288f2 to 34109169c64ce268bf1edf130de50003cf175017
+[33m0fd20c6[m HEAD@{6}: checkout: moving from b599120b7d072e76fa5d1311013df31532177c3b to 0fd20c6bb8e5bd62db88f58ae2b22270eaf288f2
+[33mb599120[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{7}: checkout: moving from 7b1ef10153a594b0870ad8e1f8960ebe294f22c9 to b599120b7d072e76fa5d1311013df31532177c3b
+[33m7b1ef10[m HEAD@{8}: checkout: moving from main to 7b1ef10153a594b0870ad8e1f8960ebe294f22c9
+[33mb599120[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{9}: commit: Funciona comer diagonal, y recto correctamente
+[33ma3eca4e[m HEAD@{10}: commit: push
+[33m1041d48[m HEAD@{11}: commit: Se puede comer a las blancasgit add .!
+[33m2176744[m HEAD@{12}: checkout: moving from EmpezarFichas to main
+[33m3a97c6a[m[33m ([m[1;32mEmpezarFichas[m[33m)[m HEAD@{13}: commit: Guardado de panico
+[33mad9d578[m HEAD@{14}: commit: Diametro aumentado
+[33m552b0e7[m HEAD@{15}: commit: Se puede mover y error si no es vecino
+[33m2176744[m HEAD@{16}: checkout: moving from main to EmpezarFichas
+[33m2176744[m HEAD@{17}: commit: Se termino el vector abyacente
+[33m942ae86[m HEAD@{18}: commit: Se termino el matriz abyacente
+[33m733f484[m HEAD@{19}: checkout: moving from d6b1a54a3984c5c168d4cf6cd24aaeb22ce3c238 to main
+[33md6b1a54[m HEAD@{20}: checkout: moving from main to d6b1a54a3984c5c168d4cf6cd24aaeb22ce3c238
+[33m733f484[m HEAD@{21}: commit: proceso en cambiar matriz por vector
+[33m6101322[m HEAD@{22}: commit: Cambio realizado
+[33md6b1a54[m HEAD@{23}: commit: Cambio de matriz a vectores
+[33m8416861[m HEAD@{24}: commit: Normalizando los sizes
+[33m3410916[m HEAD@{25}: checkout: moving from Mover_ficha to main
+[33m9818ccd[m[33m ([m[1;32mMover_ficha[m[33m)[m HEAD@{26}: checkout: moving from main to Mover_ficha
+[33m3410916[m HEAD@{27}: commit: Construccion del tablero
+[33m4613668[m HEAD@{28}: checkout: moving from Mover_ficha to main
+[33m9818ccd[m[33m ([m[1;32mMover_ficha[m[33m)[m HEAD@{29}: checkout: moving from main to Mover_ficha
+[33m4613668[m HEAD@{30}: checkout: moving from 5961670aa71229646149756b26630b8c90ce5bf5 to main
+[33m5961670[m HEAD@{31}: commit: Fichas blanca y negras
+[33m9818ccd[m[33m ([m[1;32mMover_ficha[m[33m)[m HEAD@{32}: checkout: moving from Mover_ficha to 9818ccd9ddf3be29abcc88b3ccfa515e889b6db2
+[33m9818ccd[m[33m ([m[1;32mMover_ficha[m[33m)[m HEAD@{33}: commit: Comezar funcion de mover ficha
+[33m4613668[m HEAD@{34}: checkout: moving from main to Mover_ficha
+[33m4613668[m HEAD@{35}: commit: Falta realizar mas nodos
+[33m7cb9294[m HEAD@{36}: commit: 3x3 con nodos.dato int
+[33m0fd20c6[m HEAD@{37}: commit: Ejemplo mal echo
+[33m7b1ef10[m HEAD@{38}: commit (initial): Cuadrado 3x3 con numeros
