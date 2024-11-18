@@ -208,7 +208,7 @@ void mousePressEvent(QMouseEvent *event) override {
     // Si no hay nodo seleccionado, intentar seleccionar un nodo con una ficha
     if (!nodoSeleccionado) {
         for (Nodo* nodo : nodos) {
-            if (QRect(nodo->posicion.x() - 20, nodo->posicion.y() - 20, 40, 40).contains(clickPos)) {
+            if (QRect(nodo->posicion.x() - 40, nodo->posicion.y() - 40, 80, 80).contains(clickPos)) {
                 if (nodo->ficha.estado != Vacío) {
                     nodoSeleccionado = nodo; // Marcar el nodo como seleccionado
                     return;
@@ -218,7 +218,7 @@ void mousePressEvent(QMouseEvent *event) override {
     } else {
         // Si hay un nodo seleccionado, buscar un vecino vacío para mover la ficha
         for (Nodo* vecino : nodoSeleccionado->vecinos) {
-            if (QRect(vecino->posicion.x() - 20, vecino->posicion.y() - 20, 40, 40).contains(clickPos)) {
+            if (QRect(vecino->posicion.x() - 40, vecino->posicion.y() - 40, 80, 80).contains(clickPos)) {
                 // Si el nodo vecino está vacío, podemos mover la ficha directamente
                 if (vecino->ficha.estado == Vacío) {
                     // Mover la ficha del nodo seleccionado al vecino
@@ -235,37 +235,23 @@ void mousePressEvent(QMouseEvent *event) override {
         for (Nodo* vecino : nodoSeleccionado->vecinos) {
             // Comprobar que el vecino esté ocupado por una ficha blanca
             if (vecino->ficha.estado == Blanco) {
-                // Calcular la dirección y buscar si existe un nodo vacío más allá de este vecino
+                // Buscar si existe un nodo vacío que esté más allá de este vecino
                 for (Nodo* saltoVecino : vecino->vecinos) {
                     if (QRect(saltoVecino->posicion.x() - 40, saltoVecino->posicion.y() - 40, 80, 80).contains(clickPos) &&
                         saltoVecino->ficha.estado == Vacío) {
-                        
-                        // Comprobar que el salto sea en línea recta: el nodo saltoVecino debe estar en la misma dirección
-                        int dx = vecino->posicion.x() - nodoSeleccionado->posicion.x();
-                        int dy = vecino->posicion.y() - nodoSeleccionado->posicion.y();
-                        
-                        int saltoDx = saltoVecino->posicion.x() - vecino->posicion.x();
-                        int saltoDy = saltoVecino->posicion.y() - vecino->posicion.y();
-
-                        // Para que sea un salto recto, tanto en X como en Y, la diferencia en X debe ser igual
-                        // y la diferencia en Y debe ser igual entre el nodo seleccionado y el vecino,
-                        // y entre el vecino y el nodo de destino (saltoVecino)
-                        if (dx == saltoDx || dy == saltoDy) {
-                            // Realizar el salto: mover la ficha negra a la nueva posición y dejar el nodo original vacío
-                            saltoVecino->ficha = nodoSeleccionado->ficha;
-                            nodoSeleccionado->ficha = Ficha(Vacío); // El nodo original queda vacío
-                            vecino->ficha = Ficha(Vacío); // La ficha blanca es comida y se vacía
-                            nodoSeleccionado = nullptr; // Desmarcar nodo seleccionado
-                            update(); // Redibujar la ventana
-                            return;
-                        }
+                        // Realizar el salto: mover la ficha negra a la nueva posición y dejar el nodo original vacío
+                        saltoVecino->ficha = nodoSeleccionado->ficha;
+                        nodoSeleccionado->ficha = Ficha(Vacío); // El nodo original queda vacío
+                        vecino->ficha = Ficha(Vacío); // La ficha blanca es comida y se vacía
+                        nodoSeleccionado = nullptr; // Desmarcar nodo seleccionado
+                        update(); // Redibujar la ventana
+                        return;
                     }
                 }
             }
         }
     }
 }
-
 
 
 public:
