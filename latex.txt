@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{amsmath}  % Para usar align
+\usepackage[a4paper, margin=1in]{geometry}  % Márgenes de 1 pulgada
+\usepackage{hyperref}  % Para hacer enlaces interactivos
+\usepackage{titlesec}  % Para cambiar el estilo de las secciones
+\usepackage{xcolor}    % Para colores
+\usepackage{listings}  % Para bash
+\usepackage[numbers]{natbib}
+\lstset{
+    backgroundcolor=\color[rgb]{0.047, 0.165, 0.259}, % Fondo
+    basicstyle=\color{white}\ttfamily, % Texto
+    keywordstyle=\color{white},
+    commentstyle=\color{green},
+    stringstyle=\color{green}
+}
+
+\definecolor{celeste}{RGB}{ 79,129,189 }
+% Personalización de la sección
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{celeste}}  % Estilo: tamaño grande, negrita, color azul
+  {\thesection}{1em}{}
+
+\title{Proyecto Análisis y Diseño de Algoritmos}
+\author{Héctor David Leiva Gamboa \and Juan Jose Romero Benavides}
+\date{September 2024}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+% Sección 1
+
+\newpage
+
+\section{Resumen ejecutivo}
+\begin{flushleft}
+    Este documento está diseñado para aquellos que se sienten abrumados al intentar codificar incluso los programas más simples. Aquí se presentarán los problemas comunes y sus soluciones para crear un juego desde cero utilizando C++. Sin embargo, los conceptos pueden aplicarse a otros lenguajes de programación. La clave no es el lenguaje o el método, sino cómo implementar funciones   personalizadas dentro del juego de manera efectiva.
+
+    Para facilitar el aprendizaje, descompondremos los problemas complejos en tareas más simples y abordables. Este enfoque práctico y accesible está diseñado para simplificar el código y permitir que cualquier persona, independientemente de su experiencia, entienda rápidamente cómo funcionan las diferentes funciones. Nuestro objetivo es ofrecer una guía clara y directa que permita explorar el desarrollo de videojuegos de manera rápida y sencilla, proporcionando una base sólida para construir habilidades en programación.
+\end{flushleft}
+\section{Introducción}
+\begin{itemize}
+    \item Objectivos
+    \begin{flushleft}
+        \hspace{1em} Guiar al usuario en el proceso de desarrollo de un juego en C++.
+       
+        \hspace{1em} Explicar cómo implementar funciones personalizadas dentro del juego.
+
+        \hspace{1em} Proporcionar soluciones a problemas comunes en el desarrollo de videojuegos.
+       
+    \end{flushleft}
+    \item Delimitaciones
+        \begin{flushleft}
+            \hspace{1em} El proyecto está limitado a la implementación de un juego en C++, aunque los principios pueden aplicarse a otros lenguajes.
+            
+            \hspace{1em} No se abordarán temas avanzados como motores gráficos profesionales, sino que se utilizarán herramientas básicas y conceptos fundamentales.
+        \end{flushleft}
+    \item Alcance
+        \begin{flushleft}
+            \hspace{1em} El proyecto cubre desde la conceptualización del juego, hasta la implementación básica de gráficos, y lógica de juego.
+            
+            \hspace{1em} Se incluye también la creación de una interfaz de usuario sencilla y la documentación del código.
+            
+            \hspace{1em} Se incluye la posibilidad que el usuario pueda jugar con su mando para una mejor experiencia.
+        \end{flushleft}
+    \item Definición del problema
+        \begin{flushleft}
+            \hspace{1em} Muchas personas encuentran difícil comenzar a programar un juego desde cero debido a la complejidad de descomponer las tareas y estructurar el código.
+            
+            \hspace{1em} Este proyecto tiene como objetivo simplificar el proceso, proporcionando una estructura clara y soluciones a problemas comunes que se presentan en el desarrollo de videojuegos.
+        \end{flushleft}
+\end{itemize}
+\section{Valoraciones}
+\subsection{Trabajo en equipo o colaboración}
+\begin{flushleft}
+    El primer paso para empezar un proyecto es definir como se va a trabajar en equipo y como se va a comunicar, a lo largo del proyecto, tanto en la comunicacion como se debe de trabaja en el proyecto, podemos dividirlo en dos formas, comunicacion y herramientas.
+\end{flushleft}
+\subsection{Comunicacion}
+\begin{flushleft}
+    Lo mas importate en equipo de un proyecto es la comunicacion, puede ser tanto del cliente a los programadores, o en el mismo equipo, en este caso se utiliza Whatsapp por constumbre de persona ya que solo somos dos y ya teniamos comunicacion anteriormente, pero seria genial tener un grupo con diferntes canales para tratar los diferentes temas del proyecto y no saturar el chat principal de todos los temas a resolver.
+\end{flushleft}
+\subsubsection{Actualizaciones del proyecto}
+\begin{flushleft}
+    La forma de actualizar el proyecto es atraves de git, no confundir git con GitHub ya que estos dos tiene el mismo comportamiento pero de forma diferente, git es de forma local de una computadora este es una exelente herramienta ya que si estas trabajando y de la nada sale un error que antes no estaba puedes retroceder las actualizaciones con git, claro esta que se puede subir todas estas actualizaciones a GitHub para compartirlo con tu equipo de trabajo que en este caso asi fue, si no sabes como crear proyecto de git leer Anexo 1
+\end{flushleft}
+\subsection{Herramientas}
+\begin{flushleft}
+    La unicas herramientas para codificar el codigo del proyecto son relativamente pocas ya que no hace falta mucho para programar un proyecto.
+\end{flushleft}
+\subsubsection{MSYS2}
+\begin{flushleft}
+    Este es una herramientas que se utilizar para copilar el codigo de c++, esta fue la primera forma que tuve de copilarlo, porsupuesto hay otras formas de copilarlo pero si estamos trabajando en un proyecto es nesesario que todos tenga el mismo copilador para disminuir cualquier error por culpa del copilador y nos ahorramos varios minutos de que no se realiza nada, en mi caso del equipo no nos dio ningun problema ya que todos utilizamos el mismo copilador.
+\end{flushleft}
+\subsubsection{Entorno de trabajo}
+\begin{flushleft}
+    Aqui cualquiera es libre de usar su propio entorno de trabajo ya que no afecta en lo mas minimo en el trabajo, mientras mas comodo mejor, yo empeze con Visual Studio Code y asi me quede para todo el proyecto, ya que me gusta, otros casos de entornos es Visual Studio, VIM, nano, otros prefieren en la nube, eso depende de su equipo o como mejor trabajes.
+\end{flushleft}
+\subsection{Desafios}
+\begin{flushleft}
+    No tuve tantos desafios durante la programacion pero para empezar el proyecto es lo mas dificil de cualquier persona, en donde empezar te invade la cabeza pero siempre hay una solucion a un problemas, en este apartado veras los desafios que tuvimos al empezar ya que despues de empezar los dos empezamos a programa sin ningun problema ya que tal vez no tenga tanta dificultad, voy a mostrarles cuales fueron mis primeros desafios.
+\end{flushleft}
+\subsubsection{Mostrar informacion}
+\begin{flushleft}
+    El primer desafio que nos opuso a seguir es, como imprimir datos en la terminal a funcion de la pantalla, aunque sea intuitivo, se tarda un poco en encontrar un metodo que si imprimimos la pantalla de juego no se vea mal en una pantalla pequeña o grande, windows.h nos proporciona la cantidad de caracteres maximo en X y en Y, al obtener la cantidad podemos imprimir la pantalla sin que sea vea mal en la terminal de comandos tan solo imprimiro en el centro de X y restandole la cantidad de caracteres de nuestro string.
+\end{flushleft}
+\subsubsection{Manejo de controles}
+\begin{flushleft}
+    La unica manera de ingresar informacion a c++ es atravez de una entra de c++ que es "cout", el problema que obtuve es que no obtiene los botones precionados al instante y no se puede obtener una buena jugabilidad, y las librerias xinput.h y conio.h se peuden obtener las teclas precionadas con conio.h y para obtener los botones del mando es xinput.h. Es importante decir que cuando no se preciona ningun input, se tiene que devolver 0 ya que puede entrar a un bucle infinito y no se podra actualizar la resolucion de la pantalla que anteriormente resolvimos.
+\end{flushleft}
+\subsubsection{Actualizar frame}
+\begin{flushleft}
+    Resolvimos que el programa se pueda ver bien entre comillas la pantalla de juego, pero si seguimos jugando y expandimos mas la pantalla y la hacemos mas pequeña la pantalla de juego no se vera bien, el problema es que no tenemos conciencia cuando actualizar la pantalla de juego, pero se puede hacer un condicional ya que me dio un problema, guardar el tamaño anterior con el actual si hay una diferencia se escala la pantalla, antes de cualquier cosa, restringir la cantidad de verificaciones por segundo que hace, ya que compara la pantalla cada ciclo de while y es un desperdicio con un juego tan simple, asi que nos podemos esperar milisegundos para volver a verificar la pantalla o los estados del mando
+\end{flushleft}
+\subsubsection{Mover el personaje}
+\begin{flushleft}
+    Tuvimos un problema en medio camino, y no sabiamos como resolver el problema de posicion del personaje y como moverlo, y el consejo de ahora es, mientras más sencillo mejor, ya que nos estabamos complicando con el movimiento de esta, y al final decidimos en usar la siguiente, primero el dado 1 y luego el dado 2, el resultado no cambia, es como una suma, no importa el orden, el resultado va quedar igual, decidimos cuando el usuario precione una flecha o boton del mando se mueva x cantida de veces y que no se pase del 9, o que no se pase a numeros negativos, posiblemente, el consejo, mientras más sencillo mejor era importante ya que despues de 12 horas despues consegui el resultado que tuve, no pase 12 horas seguidas, solo el tiempo que paso entre las horas de programacion que hay durante los dias.
+\end{flushleft}
+\section{Conclusiones}
+\begin{flushleft}
+    La conclusión del proyecto es que, al dividir el desarrollo del juego en tareas más pequeñas y fáciles de manejar, se logró simplificar mucho el proceso, incluso si alguno de los miembros tenía dificultad con el lenguaje de programación (C++), es posible comenzar a programar y lograr una finalidad. Además, a lo largo del camino, se enfrentaron varios retos como hacer que la pantalla del juego se viera bien sin importar su tamaño, mover al personaje de forma fluida, y manejar los controles de manera adecuada; sin embargo, gracias a la prueba y error, se logró un final satisfactorio.
+    El uso de herramientas como Git para mantener el código organizado y trabajar en equipo también fue fundamental, ya que ayudó a evitar errores y a que todos estuvieran en la misma página. Lo más importante es que, al buscar soluciones simples, se ahorró tiempo y se evitó complicar cosas que podían resolverse fácilmente.
+    En resumen, este proyecto demuestra que no son necesarias soluciones complicadas para tener lograr un resultado que cumpla los requisitos. Al centrarse en lo esencial y usar un enfoque paso a paso (organizado y en secciones), fue posible construir un juego funcional sin quedar atrapado en detalles innecesarios.
+\end{flushleft}
+\section{Anexos}
+\subsection{Anexo 1: git}
+\begin{flushleft}
+    git en simples palabras es un organizados de archivos, pongamos un ejemplo, tienes un carpeta de tu proyecto, y cuando quieres hacer un cambio del codigo creas otra carpeta pero diferenciando esta por un nombre diferente, en este caso por nombre o numeros, asi hasta que acabes el proeycto. Muchas personas lo ven engorroso esta forma de guardar codigo pasado ya que tienes muchas carpetas que son totalmente inutiles, git soluciona este problema, para el uso de git nesesitas su terminal que lo puedes descargar aqui: https://git-scm.com/downloads.\\
+    Para iniciar un proyecto de git te tienes que mover entre carpetas en la terminal de git, si no sabes como moverte por linea de comando es la siguiente:
+    \begin{lstlisting}[language=bash]
+        C:\Users\nombreUsuario> cd "nombreCarpeta"
+    \end{lstlisting}
+    Sigues hasta entrar a tu carpeta y en este punto inicias el git:
+    \begin{lstlisting}[language=bash]
+        git init
+    \end{lstlisting}
+    Solo tienes que hacer eso para empezar tu proyecto a continuacion se mostrara como guardar el progreso:
+    \begin{lstlisting}[language=bash]
+        git add .
+        git commit -m "nombreDeActualizacion"
+    \end{lstlisting}
+    Si tuvistes un error y quieres retroceder en las actualizaciones lo que tienes que hacer es obtener el hash que quieres moverte y te mueves con ese hash:
+    \begin{lstlisting}[language=bash]
+        git log
+        git reset --hard "commit_hash"
+    \end{lstlisting}
+    Importante estos siempre dentro del directorio donde creastes el archivo git, ya que en otro lugar no funcionara
+\end{flushleft}
+\section{Referencias}
+\begin{flushleft}
+    \bibliographystyle{IEEEtran}
+    \bibliography{referencias}
+\end{flushleft}
+\end{document}

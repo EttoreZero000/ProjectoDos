@@ -5,6 +5,10 @@
 #include <QVector>
 #include <vector>
 #include <QMouseEvent>
+#include <QTimer>
+#include <QMessageBox>
+
+
 
 // Definir los tres estados posibles para una ficha
 enum EstadoFicha {
@@ -15,6 +19,7 @@ enum EstadoFicha {
 
 // Clase que representa una ficha (blanca, negra o vacía)
 class Ficha {
+
 public:
     EstadoFicha estado; // Estado de la ficha
 
@@ -63,38 +68,63 @@ class GrafoWidget : public QWidget {
     int nodeCount = 33; // Número de nodos
     Nodo* nodoSeleccionado = nullptr; // Nodo seleccionado para mover
 
+private:
+    EstadoFicha turnoActual = Blanco; // El turno comienza con las fichas negras
+    QTimer* temporizador;        // Temporizador para los 5 segundos
+    bool enCadenaDeSaltos = false; // Indica si la ficha negra está en cadena de saltos
+
 public:
     GrafoWidget() {
         initializeGraph();
+        // Inicializar el temporizador
+        temporizador = new QTimer(this);
+        temporizador->setInterval(5000); // 5 segundos
+
+        // Conectar el temporizador para finalizar el turno si no se realiza otro salto
+        connect(temporizador, &QTimer::timeout, this, &GrafoWidget::finalizarCadenaDeSaltos);
+
     }
 
 protected:
     void paintEvent(QPaintEvent *event) override {
-        Q_UNUSED(event);
-        QPainter painter(this);
+    Q_UNUSED(event);
+    QPainter painter(this);
 
-        // Calcular posiciones de los nodos según el tamaño de la ventana
-        int width = this->width();
-        int height = this->height() - 60; // Ajustar altura si es necesario
-        setNodePositions(width, height);
+        // Mostrar de quién es el turno actual
+    QString textoTurno = (turnoActual == Negro) ? "Turno: Negro" : "Turno: Blanco";
+    painter.drawText(10, 20, textoTurno);
 
-        // Dibujar las conexiones entre nodos
-        painter.setPen(Qt::black);
-        for (Nodo* nodo : nodos) {
-            for (Nodo* vecino : nodo->vecinos) {
-                painter.drawLine(nodo->posicion, vecino->posicion);
-            }
-        }
+    // Calcular posiciones de los nodos según el tamaño de la ventana
+    int width = this->width();
+    int height = this->height() - 60; // Ajustar altura si es necesario
+    setNodePositions(width, height);
 
-        // Dibujar cada nodo (círculo) sin texto ni números
-        for (Nodo* nodo : nodos) {
-            // Obtener el color del nodo según su ficha
-            QColor colorNodo = nodo->ficha.obtenerColor();
-
-            painter.setBrush(colorNodo);
-            painter.drawEllipse(nodo->posicion.x() - 20, nodo->posicion.y() - 20, 40, 40);
+    // Dibujar las conexiones entre nodos
+    painter.setPen(Qt::black);
+    for (Nodo* nodo : nodos) {
+        for (Nodo* vecino : nodo->vecinos) {
+            painter.drawLine(nodo->posicion, vecino->posicion);
         }
     }
+
+    // Dibujar cada nodo (círculo) sin texto ni números
+    for (Nodo* nodo : nodos) {
+        // Obtener el color del nodo según su ficha
+        QColor colorNodo = nodo->ficha.obtenerColor();
+
+        painter.setBrush(colorNodo);
+        painter.drawEllipse(nodo->posicion.x() - 20, nodo->posicion.y() - 20, 40, 40);
+
+        // Resaltar el nodo seleccionado con un contorno
+        if (nodo == nodoSeleccionado) {
+            QPen pen(Qt::red, 3); // Contorno rojo más grueso
+            painter.setPen(pen);
+            painter.drawEllipse(nodo->posicion.x() - 20, nodo->posicion.y() - 20, 40, 40);
+            painter.setPen(Qt::black); // Restaurar el lápiz original
+        }
+    }
+}
+
 
     void initializeGraph() {
         // Crear nodos con ficha vacía
@@ -205,66 +235,221 @@ protected:
 void mousePressEvent(QMouseEvent *event) override {
     QPoint clickPos = event->pos();
 
-    // Si no hay nodo seleccionado, intentar seleccionar un nodo con una ficha
-    if (!nodoSeleccionado) {
-        for (Nodo* nodo : nodos) {
-            if (QRect(nodo->posicion.x() - 20, nodo->posicion.y() - 20, 40, 40).contains(clickPos)) {
-                if (nodo->ficha.estado != Vacío) {
-                    nodoSeleccionado = nodo; // Marcar el nodo como seleccionado
-                    return;
-                }
-            }
+    // Intentar seleccionar o deseleccionar un nodo
+    if (manejarSeleccion(clickPos)) {
+        update();
+        return;
+    }
+
+    // Si estamos en una cadena de saltos, solo permitir saltos válidos
+    if (enCadenaDeSaltos) {
+        if (comerFicha(clickPos)) {
+            update();
+            return; // Movimiento válido, continuar en la cadena de saltos
         }
+        return; // Bloquear cualquier otro movimiento
+    }
+
+    // Verificar que el nodo seleccionado pertenece al jugador actual
+    if (nodoSeleccionado && nodoSeleccionado->ficha.estado != turnoActual) {
+        return; // Bloquear si no es el turno de esta ficha
+    }
+
+    // Intentar comer una ficha
+    if (comerFicha(clickPos)) {
+        update();
+        return; // Turno continúa si se realiza un salto válido
+    }
+
+    // Intentar mover la ficha a un nodo vecino vacío (solo si no estamos en cadena de saltos)
+    if (!enCadenaDeSaltos && moverFicha(clickPos)) {
+        cambiarTurno();
+        update();
+        return;
+    }
+
+    // Si no pasa nada, deseleccionar cualquier nodo seleccionado
+    nodoSeleccionado = nullptr;
+    update();
+}
+
+void cambiarTurno() {
+    if (!enCadenaDeSaltos) {
+        // Verificar si las negras ganaron
+        if (contarFichasBlancas() < 9) {
+            QMessageBox::information(this, "Victoria", "¡Las Negras han ganado!");
+            QApplication::quit();
+            return;  // Detener el juego
+        }
+
+        // Verificar si las blancas ganaron
+        if (hanGanadoLasBlancas()) {
+            QMessageBox::information(this, "Victoria", "¡Las Blancas han ganado!");
+            QApplication::quit();
+            return;  // Detener el juego
+        }
+
+        // Cambiar turno
+        turnoActual = (turnoActual == Negro) ? Blanco : Negro;
+        temporizador->stop();
     } else {
-        // Si hay un nodo seleccionado, buscar un vecino vacío para mover la ficha
-        for (Nodo* vecino : nodoSeleccionado->vecinos) {
-            if (QRect(vecino->posicion.x() - 20, vecino->posicion.y() - 20, 40, 40).contains(clickPos)) {
-                // Si el nodo vecino está vacío, podemos mover la ficha directamente
-                if (vecino->ficha.estado == Vacío) {
-                    // Mover la ficha del nodo seleccionado al vecino
-                    vecino->ficha = nodoSeleccionado->ficha;
-                    nodoSeleccionado->ficha = Ficha(Vacío); // El nodo original queda vacío
-                    nodoSeleccionado = nullptr; // Desmarcar nodo seleccionado
-                    update(); // Redibujar la ventana
-                    return;
-                }
+        temporizador->start(); // Mantener el temporizador activo para la cadena de saltos
+    }
+}
+
+
+bool esMovimientoDeDosEspacios(const Nodo* origen, const Nodo* destino) {
+    int dx = abs(origen->posicion.x() - destino->posicion.x());
+    int dy = abs(origen->posicion.y() - destino->posicion.y());
+    return dx == 80 || dy == 80; // Ajusta este valor según la escala de tu tablero
+}
+
+bool manejarSeleccion(const QPoint& clickPos) {
+    // Si ya hay un nodo seleccionado y se vuelve a hacer clic en él, deseleccionarlo
+    if (nodoSeleccionado) {
+        if (QRect(nodoSeleccionado->posicion.x() - 20, nodoSeleccionado->posicion.y() - 20, 40, 40).contains(clickPos)) {
+            nodoSeleccionado = nullptr;
+            return true; // Se manejó el evento
+        }
+    }
+
+    // Intentar seleccionar un nodo nuevo
+    for (Nodo* nodo : nodos) {
+        if (QRect(nodo->posicion.x() - 20, nodo->posicion.y() - 20, 40, 40).contains(clickPos)) {
+            if (nodo->ficha.estado != Vacío) {
+                nodoSeleccionado = nodo;
+                return true; // Se manejó el evento
             }
         }
+    }
 
-        // Ahora, buscamos un salto (comer) por encima de una ficha blanca
-        for (Nodo* vecino : nodoSeleccionado->vecinos) {
-            // Comprobar que el vecino esté ocupado por una ficha blanca
-            if (vecino->ficha.estado == Blanco) {
-                // Calcular la dirección y buscar si existe un nodo vacío más allá de este vecino
-                for (Nodo* saltoVecino : vecino->vecinos) {
-                    if (QRect(saltoVecino->posicion.x() - 40, saltoVecino->posicion.y() - 40, 80, 80).contains(clickPos) &&
-                        saltoVecino->ficha.estado == Vacío) {
-                        
-                        // Comprobar que el salto sea en línea recta: el nodo saltoVecino debe estar en la misma dirección
-                        int dx = vecino->posicion.x() - nodoSeleccionado->posicion.x();
-                        int dy = vecino->posicion.y() - nodoSeleccionado->posicion.y();
-                        
-                        int saltoDx = saltoVecino->posicion.x() - vecino->posicion.x();
-                        int saltoDy = saltoVecino->posicion.y() - vecino->posicion.y();
+    return false; // No se manejó el evento
+}
 
-                        // Para que sea un salto recto, tanto en X como en Y, la diferencia en X debe ser igual
-                        // y la diferencia en Y debe ser igual entre el nodo seleccionado y el vecino,
-                        // y entre el vecino y el nodo de destino (saltoVecino)
-                        if (dx == saltoDx || dy == saltoDy) {
-                            // Realizar el salto: mover la ficha negra a la nueva posición y dejar el nodo original vacío
-                            saltoVecino->ficha = nodoSeleccionado->ficha;
-                            nodoSeleccionado->ficha = Ficha(Vacío); // El nodo original queda vacío
-                            vecino->ficha = Ficha(Vacío); // La ficha blanca es comida y se vacía
-                            nodoSeleccionado = nullptr; // Desmarcar nodo seleccionado
-                            update(); // Redibujar la ventana
-                            return;
+bool moverFicha(const QPoint& clickPos) {
+    if (!nodoSeleccionado) return false;
+
+    for (Nodo* vecino : nodoSeleccionado->vecinos) {
+        if (QRect(vecino->posicion.x() - 20, vecino->posicion.y() - 20, 40, 40).contains(clickPos)) {
+            if (vecino->ficha.estado == Vacío) {
+                vecino->ficha = nodoSeleccionado->ficha;
+                nodoSeleccionado->ficha = Ficha(Vacío);
+                nodoSeleccionado = nullptr; // Deseleccionar después de mover
+                return true; // Movimiento realizado
+            }
+        }
+    }
+
+    return false; // Movimiento no realizado
+}
+
+// Función para verificar si dos valores están dentro de un rango de tolerancia
+bool valoresCercanos(int a, int b, int tolerancia = 2) {
+    return abs(a - b) <= tolerancia;
+}
+
+
+bool comerFicha(const QPoint& clickPos) {
+    if (!nodoSeleccionado) return false;
+
+    // Solo fichas negras pueden comer
+    if (nodoSeleccionado->ficha.estado != Negro) {
+        return false;
+    }
+
+    // Recorrer los vecinos del nodo seleccionado
+    for (Nodo* vecino : nodoSeleccionado->vecinos) {
+        if (vecino->ficha.estado == Blanco) { // El vecino inmediato debe contener una ficha blanca
+            for (Nodo* saltoVecino : vecino->vecinos) {
+                // Verificar que el clic coincide con el nodo destino del salto
+                if (QRect(saltoVecino->posicion.x() - 40, saltoVecino->posicion.y() - 40, 80, 80).contains(clickPos) &&
+                    saltoVecino->ficha.estado == Vacío) {
+
+                    // Calcular diferencias en posiciones
+                    int dx = vecino->posicion.x() - nodoSeleccionado->posicion.x();
+                    int dy = vecino->posicion.y() - nodoSeleccionado->posicion.y();
+                    int saltoDx = saltoVecino->posicion.x() - vecino->posicion.x();
+                    int saltoDy = saltoVecino->posicion.y() - vecino->posicion.y();
+
+                    // Verificar que el movimiento es un salto válido (a dos espacios y sobre ficha blanca)
+                    if (valoresCercanos(dx, saltoDx) && valoresCercanos(dy, saltoDy)) {
+                        // Realizar el salto
+                        saltoVecino->ficha = nodoSeleccionado->ficha;
+                        nodoSeleccionado->ficha = Ficha(Vacío);
+                        vecino->ficha = Ficha(Vacío); // Comer la ficha blanca intermedia
+                        nodoSeleccionado = saltoVecino;
+
+                        // Verificar si hay más oportunidades de comer
+                        if (tieneOportunidadDeComer(nodoSeleccionado)) {
+                            enCadenaDeSaltos = true; // Continuar cadena de saltos
+                            temporizador->start();
+                        } else {
+                            enCadenaDeSaltos = false; // Finalizar cadena de saltos
+                            cambiarTurno();
                         }
+
+                        update();
+                        return true;
                     }
                 }
             }
         }
     }
+
+    return false; // No se realizó un salto válido
 }
+
+bool tieneOportunidadDeComer(Nodo* nodo) {
+    for (Nodo* vecino : nodo->vecinos) {
+        if (vecino->ficha.estado == Blanco) { // El vecino inmediato debe contener una ficha blanca
+            for (Nodo* saltoVecino : vecino->vecinos) {
+                int dx = vecino->posicion.x() - nodo->posicion.x();
+                int dy = vecino->posicion.y() - nodo->posicion.y();
+                int saltoDx = saltoVecino->posicion.x() - vecino->posicion.x();
+                int saltoDy = saltoVecino->posicion.y() - vecino->posicion.y();
+
+                // Verificar que el salto es válido
+                if (saltoVecino->ficha.estado == Vacío &&
+                    valoresCercanos(dx, saltoDx) && valoresCercanos(dy, saltoDy)) {
+                    return true; // Hay un salto válido disponible
+                }
+            }
+        }
+    }
+    return false; // No hay saltos válidos
+}
+
+
+
+
+
+void finalizarCadenaDeSaltos() {
+    temporizador->stop(); // Detener el temporizador
+    enCadenaDeSaltos = false; // Finalizar la cadena de saltos
+    cambiarTurno(); // Cambiar turno automáticamente
+    update();
+}
+
+
+int contarFichasBlancas() const {
+    int count = 0;
+    for (Nodo* nodo : nodos) {
+        if (nodo->ficha.estado == Blanco) {
+            count++;
+        }
+    }
+    return count;
+}
+
+bool hanGanadoLasBlancas() const {
+    for (int i = 0; i <= 8; ++i) {
+        if (nodos[i]->ficha.estado != Blanco) {
+            return false;  // Si algún nodo del rango 0-8 no está ocupado por una ficha blanca, no han ganado
+        }
+    }
+    return true;  // Todos los nodos del 0 al 8 están ocupados por fichas blancas
+}
+
 
 
 
@@ -274,6 +459,7 @@ public:
         qDeleteAll(nodos);
     }
 };
+
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
